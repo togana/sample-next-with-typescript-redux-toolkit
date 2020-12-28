@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction, createEntityAdapter } from "@reduxjs/toolkit";
+import { createSlice, createSelector, createEntityAdapter } from "@reduxjs/toolkit";
+import { RootState } from '../reducers';
 
 let nextId = 0
 
@@ -35,6 +36,14 @@ const todoListSlice = createSlice({
     },
 });
 
-export const { selectAll } = todoListAdapter.getSelectors();
+const stateSelector = (state: RootState) => state.todoList;
+
+export const selectors = {
+  todoList: createSelector(
+    stateSelector,
+    todoListAdapter.getSelectors().selectAll,
+  ),
+};
+
 export const { addTodo, updateTodo, delTodo } = todoListSlice.actions;
 export default todoListSlice.reducer;

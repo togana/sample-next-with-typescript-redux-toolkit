@@ -7,10 +7,13 @@ import {
   addTodo as addTodoAction,
   updateTodo as updateTodoAction,
   delTodo as delTodoAction,
+  selectors,
 } from '../slices/todoListSlice';
 import { asyncAddTodo as asyncAddTodoAction } from '../slices/asyncTodoListSlice';
 
 export const useTodoListStore = () => {
+  const todoList = useSelector(selectors.todoList);
+
   const dispatch = useDispatch<ThunkDispatch<RootState, any, Action>>();
 
   const addTodo = useCallback(
@@ -49,5 +52,6 @@ export const useTodoListStore = () => {
     updateTodo,
     delTodo,
     asyncAddTodo,
+    todoList,
   };
 };
