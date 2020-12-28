@@ -15,7 +15,7 @@ const Home: NextPage = () => {
       todo: '',
     },
   });
-  const { addTodo, asyncAddTodo } = useTodoListStore();
+  const { addTodo, asyncAddTodo, isPending } = useTodoListStore();
 
   const onSubmit = handleSubmit(({ todo }) => {
     addTodo(todo);
@@ -35,7 +35,7 @@ const Home: NextPage = () => {
       <form onSubmit={onSubmit}>
         <Input name='todo' ref={register} />
         <button>追加</button>
-        <button type='button' onClick={onAsyncSubmit}>1秒後に追加</button>
+        <button type='button' disabled={isPending} onClick={onAsyncSubmit}>1秒後に追加</button>
       </form>
       <List />
     </div>

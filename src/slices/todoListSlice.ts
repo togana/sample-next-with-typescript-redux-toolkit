@@ -39,7 +39,7 @@ const todoListSlice = createSlice({
 const stateSelector = (state: RootState) => state.todoList;
 
 export const selectors = {
-  todoList: createSelector(
+  todoListSelector: createSelector(
     stateSelector,
     todoListAdapter.getSelectors().selectAll,
   ),

@@ -9,10 +9,11 @@ import {
   delTodo as delTodoAction,
   selectors,
 } from '../slices/todoListSlice';
-import { asyncAddTodo as asyncAddTodoAction } from '../slices/asyncTodoListSlice';
+import { asyncAddTodo as asyncAddTodoAction, selectors as asyncSelectors } from '../slices/asyncTodoListSlice';
 
 export const useTodoListStore = () => {
-  const todoList = useSelector(selectors.todoList);
+  const todoList = useSelector(selectors.todoListSelector);
+  const isPending = useSelector(asyncSelectors.isPendingSelector);
 
   const dispatch = useDispatch<ThunkDispatch<RootState, any, Action>>();
 
@@ -53,5 +54,6 @@ export const useTodoListStore = () => {
     delTodo,
     asyncAddTodo,
     todoList,
+    isPending,
   };
 };
