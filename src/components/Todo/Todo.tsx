@@ -1,9 +1,5 @@
 import { FC } from 'react';
-
-export type TodoType = {
-  id: number;
-  message: string;
-};
+import { TodoType } from '../../slices/todoListSlice'
 
 export type TodoProps = {
   todo: TodoType;

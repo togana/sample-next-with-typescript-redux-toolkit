@@ -1,6 +1,8 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { useForm, NestedValue } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { addTodo } from '../slices/todoListSlice';
 import { Input } from '../components/Todo/Input';
 import { List } from '../components/Todo/List';
 
@@ -14,8 +16,9 @@ const Home: NextPage = () => {
       todo: '',
     },
   });
+  const dispatch = useDispatch();
   const onSubmit = handleSubmit(({ todo }) => {
-    console.log('submit:', todo)
+    dispatch(addTodo(todo));
     reset();
   });
 
