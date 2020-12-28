@@ -1,9 +1,7 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { useForm, NestedValue } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { useTodoListStore } from '../hooks/useTodoListStore';
-import { addTodo } from '../slices/todoListSlice';
 import { Input } from '../components/Todo/Input';
 import { List } from '../components/Todo/List';
 
@@ -17,11 +15,10 @@ const Home: NextPage = () => {
       todo: '',
     },
   });
-  const dispatch = useDispatch();
-  const { asyncAddTodo } = useTodoListStore();
+  const { addTodo, asyncAddTodo } = useTodoListStore();
 
   const onSubmit = handleSubmit(({ todo }) => {
-    dispatch(addTodo(todo));
+    addTodo(todo);
     reset();
   });
 

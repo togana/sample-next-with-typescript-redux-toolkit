@@ -8,17 +8,25 @@ import { asyncAddTodo as asyncAddTodoAction } from '../slices/asyncTodoListSlice
 export const useTodoListStore = () => {
   const dispatch = useDispatch<ThunkDispatch<RootState, any, Action>>();
 
+  const addTodo = useCallback(
+    (args: string) => {
+      dispatch(addTodoAction(args));
+    },
+    [dispatch]
+  );
+
   const asyncAddTodo = useCallback(
-    (args) => {
+    (args: string) => {
       dispatch(asyncAddTodoAction(args))
         .then(unwrapResult)
-        .then((payload) => dispatch(addTodoAction(payload)))
+        .then((payload) => addTodo(payload))
         .catch((payload) => console.error(payload));
     },
     [dispatch]
   );
 
   return {
+    addTodo,
     asyncAddTodo,
   };
 };
