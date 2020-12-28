@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../reducers';
-import { TodoType } from '../../slices/todoListSlice';
+import { TodoType, selectAll } from '../../slices/todoListSlice';
 import { Todo } from './Todo';
 
 const todoList: TodoType[] = [
@@ -11,7 +11,7 @@ const todoList: TodoType[] = [
 ];
 
 export const List: FC = () => {
-  const todoList = useSelector((state: RootState) => state.todoList)
+  const todoList = useSelector((state: RootState) => selectAll(state.todoList))
 
   return (
     <ul>
