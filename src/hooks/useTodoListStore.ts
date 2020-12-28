@@ -1,8 +1,13 @@
-import { unwrapResult, ThunkDispatch, Action } from '@reduxjs/toolkit';
+import { unwrapResult, ThunkDispatch, Action, EntityId } from '@reduxjs/toolkit';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../reducers';
-import { addTodo as addTodoAction } from '../slices/todoListSlice';
+import {
+  TodoType,
+  addTodo as addTodoAction,
+  updateTodo as updateTodoAction,
+  delTodo as delTodoAction,
+} from '../slices/todoListSlice';
 import { asyncAddTodo as asyncAddTodoAction } from '../slices/asyncTodoListSlice';
 
 export const useTodoListStore = () => {
@@ -11,6 +16,20 @@ export const useTodoListStore = () => {
   const addTodo = useCallback(
     (args: string) => {
       dispatch(addTodoAction(args));
+    },
+    [dispatch]
+  );
+
+  const updateTodo = useCallback(
+    (args: TodoType) => {
+      dispatch(updateTodoAction(args));
+    },
+    [dispatch]
+  );
+
+  const delTodo = useCallback(
+    (args: EntityId) => {
+      dispatch(delTodoAction(args));
     },
     [dispatch]
   );
@@ -27,6 +46,8 @@ export const useTodoListStore = () => {
 
   return {
     addTodo,
+    updateTodo,
+    delTodo,
     asyncAddTodo,
   };
 };

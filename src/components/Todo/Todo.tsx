@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import { useDispatch } from 'react-redux';
-import { delTodo, updateTodo } from '../../slices/todoListSlice';
+import { useTodoListStore } from '../../hooks/useTodoListStore';
 import { TodoType } from '../../slices/todoListSlice'
 
 export type TodoProps = {
@@ -8,14 +7,14 @@ export type TodoProps = {
 };
 
 export const Todo: FC<TodoProps> = ({ todo }) => {
-  const dispatch = useDispatch();
+  const { delTodo, updateTodo } = useTodoListStore();
 
   const onDelete = () => {
-    dispatch(delTodo(todo.id))
+    delTodo(todo.id);
   }
 
   const onUpdate = () => {
-    dispatch(updateTodo({ id: todo.id, message: '変更！！！' }));
+    updateTodo({ id: todo.id, message: '変更！！！' });
   }
 
   return (
