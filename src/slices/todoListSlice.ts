@@ -45,5 +45,5 @@ export const selectors = {
   ),
 };
 
-export const { addTodo, updateTodo, delTodo } = todoListSlice.actions;
+export const actions = todoListSlice.actions;
 export default todoListSlice.reducer;

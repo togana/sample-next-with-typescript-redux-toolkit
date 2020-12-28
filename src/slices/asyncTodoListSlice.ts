@@ -9,7 +9,7 @@ const asyncMessage = (message: string): Promise<string> => {
   });
 };
 
-export const asyncAddTodo = createAsyncThunk(
+const asyncAddTodo = createAsyncThunk(
   'asyncAddTodo',
   async (message: string, { getState, requestId }) => {
     const { currentRequestId, pending } = (getState() as RootState).asyncTodoList
@@ -63,4 +63,7 @@ export const selectors = {
   ),
 };
 
+export const actions = {
+  asyncAddTodo,
+};
 export default asyncTodoListSlice.reducer;

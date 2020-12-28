@@ -4,12 +4,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../reducers';
 import {
   TodoType,
-  addTodo as addTodoAction,
-  updateTodo as updateTodoAction,
-  delTodo as delTodoAction,
+  actions,
   selectors,
 } from '../slices/todoListSlice';
-import { asyncAddTodo as asyncAddTodoAction, selectors as asyncSelectors } from '../slices/asyncTodoListSlice';
+import {
+  actions as asyncActions,
+  selectors as asyncSelectors,
+} from '../slices/asyncTodoListSlice';
 
 export const useTodoListStore = () => {
   const todoList = useSelector(selectors.todoListSelector);
@@ -19,28 +20,28 @@ export const useTodoListStore = () => {
 
   const addTodo = useCallback(
     (args: string) => {
-      dispatch(addTodoAction(args));
+      dispatch(actions.addTodo(args));
     },
     [dispatch]
   );
 
   const updateTodo = useCallback(
     (args: TodoType) => {
-      dispatch(updateTodoAction(args));
+      dispatch(actions.updateTodo(args));
     },
     [dispatch]
   );
 
   const delTodo = useCallback(
     (args: EntityId) => {
-      dispatch(delTodoAction(args));
+      dispatch(actions.delTodo(args));
     },
     [dispatch]
   );
 
   const asyncAddTodo = useCallback(
     (args: string) => {
-      dispatch(asyncAddTodoAction(args))
+      dispatch(asyncActions.asyncAddTodo(args))
         .then(unwrapResult)
         .then((payload) => addTodo(payload))
         .catch((payload) => console.error(payload));
