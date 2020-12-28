@@ -24,9 +24,17 @@ const todoListSlice = createSlice({
           return { payload: { id: nextId++, message } }
         }
       },
+      updateTodo: {
+        reducer: todoListAdapter.updateOne,
+        prepare: (payload: TodoType) => {
+          const { id, ...ignoreIdPayload } = payload;
+          return { payload: { id, changes: { ...ignoreIdPayload } } }
+        }
+      },
+      delTodo: todoListAdapter.removeOne
     },
 });
 
 export const { selectAll } = todoListAdapter.getSelectors();
-export const { addTodo } = todoListSlice.actions;
+export const { addTodo, updateTodo, delTodo } = todoListSlice.actions;
 export default todoListSlice.reducer;
