@@ -2,21 +2,26 @@ import {
   createSlice,
   createSelector,
   createEntityAdapter,
+  nanoid,
+  EntityState,
+  EntityId,
 } from '@reduxjs/toolkit';
-import { RootState } from '../reducers';
-
-let nextId = 0;
+import { RootState } from '../../store';
 
 export type TodoType = {
-  id: number;
+  id: EntityId;
   message: string;
+  createdAt: number;
 };
 
-const initialState: TodoType[] = [];
+const initialState: EntityState<TodoType> = {
+  ids: [],
+  entities: {},
+};
 
 const todoListAdapter = createEntityAdapter<TodoType>({
   selectId: (todo) => todo.id,
-  sortComparer: (a, b) => a.id - b.id,
+  sortComparer: (a, b) => a.createdAt - b.createdAt,
 });
 
 const todoListSlice = createSlice({
@@ -26,12 +31,12 @@ const todoListSlice = createSlice({
     addTodo: {
       reducer: todoListAdapter.addOne,
       prepare: (message: string) => {
-        return { payload: { id: nextId++, message } };
+        return { payload: { id: nanoid(), message, createdAt: Date.now() } };
       },
     },
     updateTodo: {
       reducer: todoListAdapter.updateOne,
-      prepare: (payload: TodoType) => {
+      prepare: (payload: Omit<TodoType, 'createdAt'>) => {
         const { id, ...ignoreIdPayload } = payload;
         return { payload: { id, changes: { ...ignoreIdPayload } } };
       },

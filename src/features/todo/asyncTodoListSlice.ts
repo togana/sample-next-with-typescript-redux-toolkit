@@ -4,7 +4,7 @@ import {
   createAsyncThunk,
   SerializedError,
 } from '@reduxjs/toolkit';
-import { RootState } from '../reducers';
+import { RootState } from '../../store';
 
 const asyncMessage = (message: string): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -27,13 +27,15 @@ const asyncAddTodo = createAsyncThunk(
   }
 );
 
+const initialState = {
+  pending: false,
+  currentRequestId: undefined as string | undefined,
+  error: null as SerializedError | null,
+};
+
 const asyncTodoListSlice = createSlice({
   name: 'asyncTodoList',
-  initialState: {
-    pending: false,
-    currentRequestId: undefined as string | undefined,
-    error: null as SerializedError | null,
-  },
+  initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(asyncAddTodo.pending, (state, action) => {
@@ -41,15 +43,13 @@ const asyncTodoListSlice = createSlice({
         state.pending = true;
         state.currentRequestId = action.meta.requestId;
       }
-    });
-    builder.addCase(asyncAddTodo.fulfilled, (state, action) => {
+    }).addCase(asyncAddTodo.fulfilled, (state, action) => {
       const { requestId } = action.meta;
       if (state.pending && state.currentRequestId === requestId) {
         state.pending = false;
         state.currentRequestId = undefined;
       }
-    });
-    builder.addCase(asyncAddTodo.rejected, (state, action) => {
+    }).addCase(asyncAddTodo.rejected, (state, action) => {
       const { requestId } = action.meta;
       if (state.pending && state.currentRequestId === requestId) {
         state.pending = false;

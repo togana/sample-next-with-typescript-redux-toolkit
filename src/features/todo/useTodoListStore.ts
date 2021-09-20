@@ -5,19 +5,19 @@ import {
   EntityId,
 } from '@reduxjs/toolkit';
 import { useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../reducers';
-import { TodoType, actions, selectors } from '../slices/todoListSlice';
+import { useAppDispatch, useAppSelector } from '../../hooks/useReduxToolKit';
+import { RootState } from '../../store';
+import { TodoType, actions, selectors } from './todoListSlice';
 import {
   actions as asyncActions,
   selectors as asyncSelectors,
-} from '../slices/asyncTodoListSlice';
+} from './asyncTodoListSlice';
 
 export const useTodoListStore = () => {
-  const todoList = useSelector(selectors.todoListSelector);
-  const isPending = useSelector(asyncSelectors.isPendingSelector);
+  const todoList = useAppSelector(selectors.todoListSelector);
+  const isPending = useAppSelector(asyncSelectors.isPendingSelector);
 
-  const dispatch = useDispatch<ThunkDispatch<RootState, any, Action>>();
+  const dispatch = useAppDispatch();
 
   const addTodo = useCallback(
     (args: string) => {
@@ -27,7 +27,7 @@ export const useTodoListStore = () => {
   );
 
   const updateTodo = useCallback(
-    (args: TodoType) => {
+    (args: Omit<TodoType, "createdAt">) => {
       dispatch(actions.updateTodo(args));
     },
     [dispatch]

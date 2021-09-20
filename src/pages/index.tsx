@@ -1,9 +1,8 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { useForm, NestedValue } from 'react-hook-form';
-import { useTodoListStore } from '../hooks/useTodoListStore';
-import { Input } from '../components/Todo/Input';
-import { List } from '../components/Todo/List';
+import { useTodoListStore } from '../features/todo/useTodoListStore';
+import { List } from '../features/todo/List';
 
 type FormData = {
   todo: string;
