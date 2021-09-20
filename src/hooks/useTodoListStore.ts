@@ -1,12 +1,13 @@
-import { unwrapResult, ThunkDispatch, Action, EntityId } from '@reduxjs/toolkit';
+import {
+  unwrapResult,
+  ThunkDispatch,
+  Action,
+  EntityId,
+} from '@reduxjs/toolkit';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../reducers';
-import {
-  TodoType,
-  actions,
-  selectors,
-} from '../slices/todoListSlice';
+import { TodoType, actions, selectors } from '../slices/todoListSlice';
 import {
   actions as asyncActions,
   selectors as asyncSelectors,

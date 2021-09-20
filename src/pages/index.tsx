@@ -7,7 +7,7 @@ import { List } from '../components/Todo/List';
 
 type FormData = {
   todo: string;
-}
+};
 
 const Home: NextPage = () => {
   const { register, handleSubmit, reset } = useForm<FormData>({
@@ -35,11 +35,13 @@ const Home: NextPage = () => {
       <form onSubmit={onSubmit}>
         <input {...register('todo')} />
         <button>追加</button>
-        <button type='button' disabled={isPending} onClick={onAsyncSubmit}>1秒後に追加</button>
+        <button type="button" disabled={isPending} onClick={onAsyncSubmit}>
+          1秒後に追加
+        </button>
       </form>
       <List />
     </div>
   );
-}
+};
 
 export default Home;

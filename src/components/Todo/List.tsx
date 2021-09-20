@@ -8,7 +8,9 @@ export const List: FC = () => {
 
   return (
     <ul>
-      { todoList.map((todo: TodoType) => <Todo key={todo.id} todo={todo} />) }
+      {todoList.map((todo: TodoType) => (
+        <Todo key={todo.id} todo={todo} />
+      ))}
     </ul>
   );
 };
