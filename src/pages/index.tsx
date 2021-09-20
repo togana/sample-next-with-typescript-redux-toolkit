@@ -33,13 +33,13 @@ const Home: NextPage = () => {
         <title>Sample Next with TypeScript &amp; RTK</title>
       </Head>
       <form onSubmit={onSubmit}>
-        <Input name='todo' ref={register} />
+        <input {...register('todo')} />
         <button>追加</button>
         <button type='button' disabled={isPending} onClick={onAsyncSubmit}>1秒後に追加</button>
       </form>
       <List />
     </div>
-  )
+  );
 }
 
 export default Home;
