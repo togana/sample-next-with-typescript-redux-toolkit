@@ -47,7 +47,7 @@ export const useTodoListStore = () => {
         .then((payload) => addTodo(payload))
         .catch((payload) => console.error(payload));
     },
-    [dispatch]
+    [addTodo, dispatch]
   );
 
   return {
