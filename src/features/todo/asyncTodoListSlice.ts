@@ -38,25 +38,28 @@ const asyncTodoListSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(asyncAddTodo.pending, (state, action) => {
-      if (!state.pending) {
-        state.pending = true;
-        state.currentRequestId = action.meta.requestId;
-      }
-    }).addCase(asyncAddTodo.fulfilled, (state, action) => {
-      const { requestId } = action.meta;
-      if (state.pending && state.currentRequestId === requestId) {
-        state.pending = false;
-        state.currentRequestId = undefined;
-      }
-    }).addCase(asyncAddTodo.rejected, (state, action) => {
-      const { requestId } = action.meta;
-      if (state.pending && state.currentRequestId === requestId) {
-        state.pending = false;
-        state.error = action.error;
-        state.currentRequestId = undefined;
-      }
-    });
+    builder
+      .addCase(asyncAddTodo.pending, (state, action) => {
+        if (!state.pending) {
+          state.pending = true;
+          state.currentRequestId = action.meta.requestId;
+        }
+      })
+      .addCase(asyncAddTodo.fulfilled, (state, action) => {
+        const { requestId } = action.meta;
+        if (state.pending && state.currentRequestId === requestId) {
+          state.pending = false;
+          state.currentRequestId = undefined;
+        }
+      })
+      .addCase(asyncAddTodo.rejected, (state, action) => {
+        const { requestId } = action.meta;
+        if (state.pending && state.currentRequestId === requestId) {
+          state.pending = false;
+          state.error = action.error;
+          state.currentRequestId = undefined;
+        }
+      });
   },
 });
 

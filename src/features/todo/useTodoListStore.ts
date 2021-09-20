@@ -27,7 +27,7 @@ export const useTodoListStore = () => {
   );
 
   const updateTodo = useCallback(
-    (args: Omit<TodoType, "createdAt">) => {
+    (args: Omit<TodoType, 'createdAt'>) => {
       dispatch(actions.updateTodo(args));
     },
     [dispatch]
