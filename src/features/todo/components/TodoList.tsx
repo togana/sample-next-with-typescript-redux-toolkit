@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { useTodoListStore } from './useTodoListStore';
-import { TodoType } from './todoListSlice';
+import { useTodoListStore } from '../useTodoListStore';
+import { TodoType } from '../todoListSlice';
 import { Todo } from './Todo';
 
-export const List: FC = () => {
+export const TodoList: FC = () => {
   const { todoList } = useTodoListStore();
 
   return (

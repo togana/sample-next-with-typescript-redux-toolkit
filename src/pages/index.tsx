@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { InputForm } from '../features/todo/InputForm';
-import { List } from '../features/todo/List';
+import { InputForm } from '../features/todo/components/InputForm';
+import { TodoList } from '../features/todo/components/TodoList';
 
 type FormData = {
   todo: string;
@@ -14,7 +14,7 @@ const Home: NextPage = () => {
         <title>Sample Next with TypeScript &amp; RTK</title>
       </Head>
       <InputForm />
-      <List />
+      <TodoList />
     </div>
   );
 };
