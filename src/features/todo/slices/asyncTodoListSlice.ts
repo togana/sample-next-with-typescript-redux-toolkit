@@ -4,7 +4,7 @@ import {
   createAsyncThunk,
   SerializedError,
 } from '@reduxjs/toolkit';
-import { RootState } from '../../store';
+import { RootState } from '../../../store';
 
 const asyncMessage = (message: string): Promise<string> => {
   return new Promise((resolve, reject) => {

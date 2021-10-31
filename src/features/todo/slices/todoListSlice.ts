@@ -6,7 +6,7 @@ import {
   EntityState,
   EntityId,
 } from '@reduxjs/toolkit';
-import { RootState } from '../../store';
+import { RootState } from '../../../store';
 
 export type TodoType = {
   id: EntityId;

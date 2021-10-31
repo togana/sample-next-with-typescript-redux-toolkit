@@ -1,6 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import asyncTodoListSlice from './features/todo/asyncTodoListSlice';
-import todoListReducer from './features/todo/todoListSlice';
+import asyncTodoListSlice from './features/todo/slices/asyncTodoListSlice';
+import todoListReducer from './features/todo/slices/todoListSlice';
 
 export const rootReducer = combineReducers({
   asyncTodoList: asyncTodoListSlice,

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
-import { useTodoListStore } from '../useTodoListStore';
+import { useTodoListStore } from '../hooks/useTodoListStore';
 
 export const InputForm: FC = () => {
   const { register, handleSubmit, reset } = useForm<FormData>({

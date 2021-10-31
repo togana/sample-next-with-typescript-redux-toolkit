@@ -5,13 +5,13 @@ import {
   EntityId,
 } from '@reduxjs/toolkit';
 import { useCallback } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/useReduxToolKit';
-import { RootState } from '../../store';
-import { TodoType, actions, selectors } from './todoListSlice';
+import { useAppDispatch, useAppSelector } from '../../../hooks/useReduxToolKit';
+import { RootState } from '../../../store';
+import { TodoType, actions, selectors } from '../slices/todoListSlice';
 import {
   actions as asyncActions,
   selectors as asyncSelectors,
-} from './asyncTodoListSlice';
+} from '../slices/asyncTodoListSlice';
 
 export const useTodoListStore = () => {
   const todoList = useAppSelector(selectors.todoListSelector);

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useTodoListStore } from '../useTodoListStore';
+import { useTodoListStore } from '../hooks/useTodoListStore';
 import { TodoType } from './todoListSlice';
 
 export type TodoProps = {

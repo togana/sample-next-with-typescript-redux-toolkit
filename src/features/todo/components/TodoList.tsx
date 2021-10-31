@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { useTodoListStore } from '../useTodoListStore';
-import { TodoType } from '../todoListSlice';
+import { useTodoListStore } from '../hooks/useTodoListStore';
+import { TodoType } from '../slices/todoListSlice';
 import { Todo } from './Todo';
 
 export const TodoList: FC = () => {
