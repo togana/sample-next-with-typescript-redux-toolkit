@@ -1,7 +1,6 @@
 import { NextPage } from 'next';
 import Head from 'next/head';
-import { InputForm } from '../features/todo/components/InputForm';
-import { TodoList } from '../features/todo/components/TodoList';
+import { InputForm, TodoList } from '../features/todo/components';
 
 type FormData = {
   todo: string;
