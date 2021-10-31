@@ -2,10 +2,6 @@ import { NextPage } from 'next';
 import Head from 'next/head';
 import { InputForm, TodoList } from '../features/todo/components';
 
-type FormData = {
-  todo: string;
-};
-
 const Home: NextPage = () => {
   return (
     <div>
